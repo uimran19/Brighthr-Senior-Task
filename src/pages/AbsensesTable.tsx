@@ -8,7 +8,6 @@ export default function AbsensesTable() {
         useEffect( () => {
             async function fetchAbsenses() {
                 const response = await fetch(absensesListUrl)
-                console.log('Absenses API Response:', response)
                 const data = await response.json()
                 console.log(data)
                 setAbsensesList(data)

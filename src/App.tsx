@@ -1,4 +1,4 @@
-import AbsensesTable from '../pages/AbsensesTable'
+import AbsensesTable from './pages/AbsensesTable'
 
 function App() {
 
