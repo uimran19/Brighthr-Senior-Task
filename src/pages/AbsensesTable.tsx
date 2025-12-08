@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react"
+import { useGetAbsenses } from "../dataLayer"
 
 export default function AbsensesTable() {
 
-    const [absensesList, setAbsensesList] = useState([])
-    const absensesListUrl = 'https://front-end-kata.brighthr.workers.dev/api/absences'
-    try {
-        useEffect( () => {
-            async function fetchAbsenses() {
-                const response = await fetch(absensesListUrl)
-                const data = await response.json()
-                console.log(data)
-                setAbsensesList(data)
-            }
-            fetchAbsenses()
-        }, [])
+    const {data: absensesList, isLoading, isError} = useGetAbsenses() || [];
+
+    if (isLoading) {
+        return <div>Loading...</div>
     }
-    catch (error) {
-        console.error('Error fetching absenses data:', error)
+
+    if (isError) {
+        return <div>Error loading absenses.</div>
     }
 
   return (
