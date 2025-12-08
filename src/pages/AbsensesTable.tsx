@@ -13,15 +13,15 @@ export default function AbsensesTable() {
     }
 
   return (
-    <main>
+    <main className=" flex flex-col items-center justify-center">
         <table className="border">
                     <thead>
-                        <tr>
-                            <td>Employee Name</td>
-                            <td>Start Date</td>
-                            <td>End Date</td>
-                            <td>Absense Type</td>
-                            <td>Approved/Pending Approval</td>
+                        <tr className="border-b">
+                            <td className="border p-2 text-center">Employee Name</td>
+                            <td className="border p-2 text-center">Start Date</td>
+                            <td className="border p-2 text-center">End Date</td>
+                            <td className="border p-2 text-center">Absense Type</td>
+                            <td className="border p-2 text-center">Approved/Pending Approval</td>
                         </tr>
                     </thead>
         <tbody>
@@ -30,12 +30,12 @@ export default function AbsensesTable() {
                 const endDate = new Date(absense.startDate)
                 endDate.setDate(endDate.getDate() + absense.days)
                 return (
-                    <tr key={absense.id}>
-                        <td>{`${absense.employee.firstName} ${absense.employee.lastName}`}</td>
-                        <td>{startDate.toLocaleDateString()}</td>
-                        <td>{endDate.toLocaleDateString()}</td>
-                        <td>{absense.absenceType}</td>
-                        <td>{absense.approved ? "Approved" : "Pending Approval"}</td>
+                    <tr className="border-r" key={absense.id}>
+                        <td className="border p-2 text-center">{`${absense.employee.firstName} ${absense.employee.lastName}`}</td>
+                        <td className="border p-2 text-center">{startDate.toLocaleDateString()}</td>
+                        <td className="border p-2 text-center">{endDate.toLocaleDateString()}</td>
+                        <td className="border p-2 text-center">{absense.absenceType}</td>
+                        <td className="border p-2 text-center">{absense.approved ? "Approved" : "Pending Approval"}</td>
                     </tr>
                 )
             })}
