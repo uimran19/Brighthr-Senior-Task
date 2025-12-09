@@ -1,5 +1,6 @@
 import { useGetAbsenses } from "../dataLayer"
 import { AbsensesRow } from "../components/AbsenseRow"
+import { useState } from "react";
 
 export type Absense = {
         id: number;
@@ -17,6 +18,8 @@ export type Absense = {
 export default function AbsensesTable() {
 
     const {data: absensesList, isLoading, isError} = useGetAbsenses() || [];    
+    const [selectedEmployeeName, setSelectedEmployeeName] = useState<string | null>(null)
+
 
     if (isLoading) {
     return <div>Loading...</div>
@@ -24,6 +27,10 @@ export default function AbsensesTable() {
 
     if (isError) {
         return <div>Error loading absenses.</div>
+    }
+
+    function handleEmployeeClick(name: string) {
+        setSelectedEmployeeName(name);
     }
 
   return (
@@ -40,7 +47,7 @@ export default function AbsensesTable() {
                     </thead>
         <tbody>
             {absensesList.map( (absense: Absense) => (
-                <AbsensesRow absense={absense} />
+                <AbsensesRow absense={absense} key={absense.id} onEmployeeClick={handleEmployeeClick} selectedEmployeeName={selectedEmployeeName} />
             ))}       
         </tbody>
         </table>
