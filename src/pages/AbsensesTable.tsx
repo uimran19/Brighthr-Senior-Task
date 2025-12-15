@@ -16,7 +16,7 @@ export type Absense = {
 }
 
 
-export default function AbsensesTable({sortBy} : {sortBy : string}) {
+export default function AbsensesTable({sortBy, order} : {sortBy : string, order:boolean}) {
 
     const {data: absensesList, isLoading, isError} = useGetAbsenses() || [];    
     const [selectedEmployeeName, setSelectedEmployeeName] = useState<string | null>(null)
@@ -38,14 +38,26 @@ export default function AbsensesTable({sortBy} : {sortBy : string}) {
         const endDateB = new Date(b.startDate)
         endDateB.setDate(endDateB.getDate() + b.days)
 
-        if (sortBy === 'Name') {
+        if (sortBy === 'Name' && order === false) {
             return a.employee.firstName.localeCompare(b.employee.firstName)
         }
-        else if (sortBy === 'Absense Type') {
+        else if (sortBy === 'Absense Type' && order === false) {
             return a.absenceType.localeCompare(b.absenceType)
         }
-        else if (sortBy === 'End Date') {
+        else if (sortBy === 'End Date' && order === false) {
             return endDateB.getTime() - endDateA.getTime()
+        }
+        else if (sortBy === 'Name' && order === true) {
+            return b.employee.firstName.localeCompare(a.employee.firstName)
+        }
+        else if (sortBy === 'Absense Type' && order === true) {
+            return b.absenceType.localeCompare(a.absenceType)
+        }
+        else if (sortBy === 'End Date' && order === true) {
+            return endDateA.getTime() - endDateB.getTime()
+        }
+        else if (sortBy === 'Start Date' && order === true) {
+            return dateA - dateB
         }
         
         return dateB - dateA

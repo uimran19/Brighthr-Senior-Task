@@ -27,4 +27,4 @@ To run the tests, input the following command:
 
 ## Description
 
-An absenses app, where users can view current employee absenses and sort by name, date and absense type.
+An absences app, where users can view current employee absences and sort by name, date and absence type.
