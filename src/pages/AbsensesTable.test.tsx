@@ -34,7 +34,7 @@ jest.mock('../dataLayer', () => ({
         isLoading: false,
         isError: false
     }),
-    useGetAbsenseConflicts: (id: number) => ({
+    useGetAbsenseConflicts: () => ({
         data: {conflicts: false}
     })  
 }));
@@ -48,7 +48,6 @@ describe('AbsensesTable', () => {
                 <AbsensesTable />
             </QueryClientProvider>
         );
-        screen.debug()
         expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
 });

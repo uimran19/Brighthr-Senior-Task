@@ -1,6 +1,6 @@
 import { SortArrowsIcon } from '@brighthr/icons';
 
-export default function Sorting({sortBy, setSortBy, order, setOrder}) {
+export default function Sorting({sortBy, setSortBy, order, setOrder} : {sortBy:string, setSortBy:(value:string)=>void, order:boolean, setOrder:(value:boolean)=>void}) {
     
     function handleChange(value: string) {
         setSortBy(value)
